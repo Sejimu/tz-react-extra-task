@@ -10,15 +10,23 @@ export function usePostsContext() {
 
 function PostsContext({ children }) {
   const [posts, setPosts] = useState([]);
+  const [onePost, setOnePost] = useState({});
 
   async function getPosts() {
     const { data } = await axios.get(API);
     setPosts(data);
   }
 
+  async function getOnePost(id) {
+    const { data } = await axios(`${API}/${id}`);
+    setOnePost(data);
+  }
+
   const value = {
     posts,
     getPosts,
+    onePost,
+    getOnePost,
   };
 
   return (
