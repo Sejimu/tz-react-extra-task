@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { usePostsContext } from "../context/PostsContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
 
 const bull = (
   <Box
@@ -16,6 +17,7 @@ const bull = (
 );
 
 function DetailsPage() {
+  const navigate = useNavigate();
   const { onePost, getOnePost } = usePostsContext();
   const params = useParams();
 
@@ -37,6 +39,7 @@ function DetailsPage() {
         </Typography>
         <Typography variant="body2">{onePost.content}</Typography>
       </CardContent>
+      <Button onClick={() => navigate("/")}>back</Button>
     </Card>
   );
 }
